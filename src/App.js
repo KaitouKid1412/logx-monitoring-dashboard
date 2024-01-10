@@ -3,8 +3,6 @@ import TokenMetricChart from "./TokenMetricChart"
 import GlobalMetricChart from "./GlobalMetricChart"
 import FeeChart from "./FeeChart"
 import styled from "styled-components"
-import ReactSlider from "react-slider"
-import { parseHHMMTo24HourDate, formatTo24HourHHMM } from "./utils"
 
 const ChartDiv = styled.div`
     display: flex;

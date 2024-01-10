@@ -3,6 +3,7 @@ import axios from "axios"
 import { Line } from "react-chartjs-2"
 import "chart.js/auto"
 import styled from "styled-components"
+import MockAxios from "./mock"
 
 const ChartContainer = styled.div`
     width: 750px;
@@ -20,8 +21,9 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     useEffect(() => {
         const apiUrl = `${URL}/${metricName}?chainId=${chainId}`
 
-        axios
-            .get(apiUrl)
+        // axios
+        //     .get(apiUrl)
+        MockAxios[metricName]()
             .then((response) => {
                 let data = response.data
 
@@ -102,7 +104,10 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                                 data: filteredValues.map(
                                     (item, index, array) =>
                                         item.data -
-                                        findStartingValue(array[0].timestamp, values)
+                                        findStartingValue(
+                                            array[0].timestamp,
+                                            values
+                                        )
                                 ),
                                 fill: false,
                                 borderColor: "rgb(75, 192, 192)",
