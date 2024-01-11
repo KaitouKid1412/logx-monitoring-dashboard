@@ -3,14 +3,13 @@ import axios from "axios"
 import { Line } from "react-chartjs-2"
 import "chart.js/auto"
 import styled from "styled-components"
-import MockAxios from "./mock"
 
 const ChartContainer = styled.div`
     width: 750px;
     height: 500px;
 `
 
-const URL = "http://localhost:8000"
+const URL = "https://linea-odp-endpoints-amw4lppwda-uc.a.run.app"
 
 const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     const [values, setValues] = useState([])
@@ -21,9 +20,8 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     useEffect(() => {
         const apiUrl = `${URL}/${metricName}?chainId=${chainId}`
 
-        // axios
-        //     .get(apiUrl)
-        MockAxios[metricName]()
+        axios
+            .get(apiUrl)
             .then((response) => {
                 let data = response.data
 

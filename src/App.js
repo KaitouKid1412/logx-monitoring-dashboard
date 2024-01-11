@@ -39,23 +39,11 @@ const StyledHeader = styled.h2`
 
 function App() {
     const [selectedChainId, setSelectedChainId] = useState("5000")
-    const [ethAddress, setEthAddress] = useState(
-        "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111"
-    )
-    const [btcAddress, setBtcAddress] = useState(
-        "0xCAbAE6f6Ea1ecaB08Ad02fE02ce9A44F09aebfA2"
-    )
+    
     const [dates, setDates] = useState(new Map())
 
     const handleChainChange = (event) => {
         setSelectedChainId(event.target.value)
-        if (event.target.value === "5000") {
-            setEthAddress("0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111")
-            setBtcAddress("0xCAbAE6f6Ea1ecaB08Ad02fE02ce9A44F09aebfA2")
-        } else {
-            setEthAddress("0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f")
-            setBtcAddress("0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4")
-        }
     }
 
     return (
@@ -63,6 +51,7 @@ function App() {
             <StyledSelect onChange={handleChainChange} defaultValue="5000">
                 <option value="5000">Mantle</option>
                 <option value="59144">Linea</option>
+                <option value="255">Kroma</option>
             </StyledSelect>
             <StyledHeader>fee Metrics</StyledHeader>
             <ChartDiv>
@@ -93,13 +82,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongFundingRate"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortFundingRate"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -107,13 +96,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongFundingRate"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortFundingRate"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -121,13 +110,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongBorrowingRate"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortBorrowingRate"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -135,13 +124,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongBorrowingRate"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortBorrowingRate"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -149,13 +138,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongPnl"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortPnl"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -163,13 +152,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongPnl"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortPnl"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -177,13 +166,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="TotalLongOiToOiThresholdRatio"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="TotalShortOiToOiThresholdRatio"
-                    tokenAddress={ethAddress}
+                    tokenAddress={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -191,13 +180,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="TotalLongOiToOiThresholdRatio"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="TotalShortOiToOiThresholdRatio"
-                    tokenAddress={btcAddress}
+                    tokenAddress={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />

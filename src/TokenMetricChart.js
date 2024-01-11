@@ -12,24 +12,31 @@ const ChartContainer = styled.div`
 
 const URL = "https://logx-monitoring-linea-u2cbkjcpkq-uc.a.run.app"
 const RATE_PRECISION = 1000000000
-const tokenAddressToSymbolMapping = {
+const symbolToTokenAddressMapping = {
     //Mainnet Mantle
     5000: {
-        "0xcabae6f6ea1ecab08ad02fe02ce9a44f09aebfa2": "BTC",
-        "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111": "ETH",
-        "0x201eba5cc46d216ce6dc03f6a759e8e766e956ae": "USDT",
+        "BTC": "0xcabae6f6ea1ecab08ad02fe02ce9a44f09aebfa2",
+        "ETH": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111",
+        "USDT": "0x201eba5cc46d216ce6dc03f6a759e8e766e956ae",
     },
     //Mainnet Linea
     59144: {
-        "0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4": "BTC",
-        "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f": "ETH",
-        "0x176211869ca2b568f2a7d4ee941e073a821ee1ff": "USDC",
+        "BTC": "0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4",
+        "ETH": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
+        "USDC": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+    },
+    //Mainnet Kroma
+    255: {
+        "USDT": "0x0Cf7c2A584988871b654Bd79f96899e4cd6C41C0",
+        "USDC": "0x0257e4d92C00C9EfcCa1d641b224d7d09cfa4522",
+        "BTC": "0x2104E3BD1cC8551EeC0c7ad10dE13da29136B19C",
+        "ETH": "0x4200000000000000000000000000000000000001",
     },
 }
 
 const TokenMetricChart = ({
     metricName,
-    tokenAddress,
+    symbol,
     chainId,
     dates,
     setDates,
@@ -47,8 +54,8 @@ const TokenMetricChart = ({
         ],
     })
 
-    const symbol =
-        tokenAddressToSymbolMapping[chainId][tokenAddress.toLowerCase()]
+    const tokenAddress =
+        symbolToTokenAddressMapping[chainId][symbol]
 
     const chartOptions = {
         plugins: {
@@ -93,12 +100,14 @@ const TokenMetricChart = ({
 
                 if (dates.get("startDate")) {
                     data = data.filter(
-                        (item) => dates.get("startDate") <= new Date(item.timestamp)
+                        (item) =>
+                            dates.get("startDate") <= new Date(item.timestamp)
                     )
                 }
                 if (dates.get("endDate")) {
                     data = data.filter(
-                        (item) => dates.get("endDate") >= new Date(item.timestamp)
+                        (item) =>
+                            dates.get("endDate") >= new Date(item.timestamp)
                     )
                 }
                 const labels = data.map((item) =>
