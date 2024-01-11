@@ -39,6 +39,7 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                         else return 0
                     })
                 setStartDate(data[0].timestamp)
+                if (data.length >= 30) setStartDate(data[data.length - 30].timestamp)
                 setEndDate(data[data.length - 1].timestamp)
                 let chartData = []
                 let total = 0
