@@ -15,15 +15,15 @@ const RATE_PRECISION = 1000000000
 const symbolToTokenAddressMapping = {
     //Mainnet Mantle
     5000: {
-        "BTC": "0xcabae6f6ea1ecab08ad02fe02ce9a44f09aebfa2",
-        "ETH": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111",
-        "USDT": "0x201eba5cc46d216ce6dc03f6a759e8e766e956ae",
+        "BTC": "0xCAbAE6f6Ea1ecaB08Ad02fE02ce9A44F09aebfA2",
+        "ETH": "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
+        "USDT": "0x201EBa5CC46D216Ce6DC03F6a759e8E766e956aE",
     },
     //Mainnet Linea
     59144: {
-        "BTC": "0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4",
-        "ETH": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
-        "USDC": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "BTC": "0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4",
+        "ETH": "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f",
+        "USDC": "0x176211869cA2b568f2A7D4EE941E073a821EE1ff",
     },
     //Mainnet Kroma
     255: {
