@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+div#time-slider {
+  width: 100vw;
+  margin: 20px;
+}
