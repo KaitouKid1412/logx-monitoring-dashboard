@@ -70,7 +70,7 @@ const GlobalMetricChart = ({ metricName, chainId }) => {
             .catch((error) => {
                 console.error("Error fetching data:", error)
             })
-    }, [metricName])
+    }, [metricName, chainId])
 
     return (
         <ChartContainer>
