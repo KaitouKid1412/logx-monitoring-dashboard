@@ -39,7 +39,8 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                         else return 0
                     })
                 setStartDate(data[0].timestamp)
-                if (data.length >= 30) setStartDate(data[data.length - 30].timestamp)
+                if (data.length >= 30)
+                    setStartDate(data[data.length - 30].timestamp)
                 setEndDate(data[data.length - 1].timestamp)
                 let chartData = []
                 let total = 0
@@ -89,6 +90,13 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     const filteredValues = values.filter(filterTime)
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div
+                style={{ width: "100%", textAlign: "center", fontSize: "15px" }}
+            >
+                {`${metricName} (accumulate [${filteredValues[0]?.timestamp.toLocaleString()} - ${filteredValues[
+                    filteredValues.length - 1
+                ]?.timestamp.toLocaleString()}]:`}
+            </div>
             <ChartContainer>
                 <Line
                     data={{
@@ -118,14 +126,12 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                         plugins: {
                             title: {
                                 display: true,
-                                text: `${metricName} (accumulate [${filteredValues[0]?.timestamp.toLocaleString()} - ${filteredValues[
-                                    filteredValues.length - 1
-                                ]?.timestamp.toLocaleString()}]: ${
+                                text: `${
                                     filteredValues[filteredValues.length - 1]
                                         ?.data - filteredValues[0]?.data
-                                })`,
+                                }`,
                                 font: {
-                                    size: 12,
+                                    size: 18,
                                 },
                                 padding: {
                                     top: 10,
