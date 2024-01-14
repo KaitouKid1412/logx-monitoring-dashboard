@@ -49,8 +49,20 @@ const GlobalMetricChart = ({ metricName, chainId }) => {
             .get(apiUrl)
             .then((response) => {
                 const data = response.data
+                    .map((item) => ({
+                        ...item,
+                        timestamp: new Date(item.timestamp),
+                    }))
+
+                    .sort((timeLeft, timeRight) => {
+                        const a = timeLeft.timestamp
+                        const b = timeRight.timestamp
+                        if (a > b) return 1
+                        else if (a < b) return -1
+                        else return 0
+                    })
                 const labels = data.map((item) =>
-                    new Date(item.timestamp).toLocaleTimeString()
+                    item.timestamp.toLocaleTimeString()
                 )
                 let chartData
                 chartData = data.map((item) => parseFloat(item.metricValue))
