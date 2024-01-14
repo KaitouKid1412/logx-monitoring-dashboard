@@ -89,14 +89,13 @@ const TokenMetricChart = ({ metricName, symbol, chainId, dates, setDates }) => {
                         else if (a < b) return -1
                         else return 0
                     })
-                const labels = data.map((item) =>
-                    item.timestamp.toLocaleTimeString()
+                const labels = data.map((item, index) =>
+                    index === 0 || index === data.length - 1
+                        ? item.timestamp.toLocaleString()
+                        : item.timestamp.toLocaleTimeString()
                 )
                 let chartData
-                if (
-                    metricName === "LongPnl" ||
-                    metricName === "ShortPnl"
-                ) {
+                if (metricName === "LongPnl" || metricName === "ShortPnl") {
                     chartData = data.map((item) =>
                         new BigNumber(item.metricValue)
                             .dividedBy(new BigNumber(10).pow(30))
