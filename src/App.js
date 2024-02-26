@@ -52,6 +52,9 @@ function App() {
                 <option value="5000">Mantle</option>
                 <option value="59144">Linea</option>
                 <option value="255">Kroma</option>
+                <option value="169">Manta</option>
+                <option value="40">Telos</option>
+                <option value="122">Fuse</option>
             </StyledSelect>
             <StyledHeader>fee Metrics</StyledHeader>
             <ChartDiv>

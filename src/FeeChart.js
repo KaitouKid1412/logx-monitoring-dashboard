@@ -15,6 +15,8 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     const [values, setValues] = useState([])
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
+    const [defaultStartDate, setDefaultStartDate] = useState(null)
+    const [defaultEndDate, setDefaultEndDate] = useState(null)
     const [timeZoneDiff] = useState(new Date().getTimezoneOffset() * 60 * 1000)
 
     useEffect(() => {
@@ -39,9 +41,12 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                         else return 0
                     })
                 setStartDate(data[0].timestamp)
+                setDefaultStartDate(data[0].timestamp)
                 if (data.length >= 30)
                     setStartDate(data[data.length - 30].timestamp)
+                    setDefaultStartDate(data[data.length - 30].timestamp)
                 setEndDate(data[data.length - 1].timestamp)
+                setDefaultEndDate(data[data.length - 1].timestamp)
                 let chartData = []
                 let total = 0
                 data.forEach((item) => {
@@ -60,6 +65,10 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     }, [metricName, chainId])
 
     const handleStartDateChange = (newValues) => {
+        if(!newValues.target.valueAsDate){
+            setStartDate(defaultStartDate)
+            return
+        }
         setStartDate(
             new Date(newValues.target.valueAsDate.getTime() + timeZoneDiff)
         )
@@ -69,12 +78,17 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
     }
 
     const handleEndDateChange = (newValues) => {
+        if(!newValues.target.valueAsDate){
+            setEndDate(defaultEndDate)
+            return
+        }
         setEndDate(
             new Date(newValues.target.valueAsDate.getTime() + timeZoneDiff)
         )
         console.log(
             new Date(newValues.target.valueAsDate.getTime() + timeZoneDiff)
         )
+        
     }
 
     const filterTime = (item) =>
@@ -93,18 +107,14 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
             <div
                 style={{ width: "100%", textAlign: "center", fontSize: "15px" }}
             >
-                {`${metricName} (accumulate [${filteredValues[0]?.timestamp.toLocaleString()} - ${filteredValues[
+                {`${metricName} (Total from ${filteredValues[0]?.timestamp.toLocaleDateString()} to ${filteredValues[
                     filteredValues.length - 1
-                ]?.timestamp.toLocaleString()}]:`}
+                ]?.timestamp.toLocaleDateString()}):`}
             </div>
             <ChartContainer>
                 <Line
                     data={{
-                        labels: filteredValues.map((item, index, array) =>
-                            index === 0 || index === array.length - 1
-                                ? item.timestamp.toLocaleString()
-                                : item.timestamp.toLocaleTimeString()
-                        ),
+                        labels: filteredValues.map((item) => item.timestamp.toLocaleTimeString()),
                         datasets: [
                             {
                                 label: metricName,
@@ -126,9 +136,9 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                         plugins: {
                             title: {
                                 display: true,
-                                text: `${
-                                    filteredValues[filteredValues.length - 1]
-                                        ?.data - filteredValues[0]?.data
+                                text: `$${
+                                    (filteredValues[filteredValues.length - 1]
+                                        ?.data - filteredValues[0]?.data).toFixed(4)
                                 }`,
                                 font: {
                                     size: 18,
@@ -152,18 +162,35 @@ const TokenMetricChart = ({ metricName, chainId, dates, setDates }) => {
                         paddingRight: "15px",
                     }}
                 >
-                    <input
-                        aria-label="Date and time"
-                        type="datetime-local"
-                        onChange={handleStartDateChange}
-                        // value={startDate ?? new Date()}
-                    />
-                    <input
-                        aria-label="Date and time"
-                        type="datetime-local"
-                        onChange={handleEndDateChange}
-                        // value={endDate ?? new Date()}
-                    />
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        fontSize: 8,
+                        height: "max-content"
+                    }}>
+                        <h2>Enter start date</h2>
+                        <input
+                            aria-label="Date"
+                            type="date"
+                            onChange={handleStartDateChange}
+                            // value={startDate ?? new Date()}
+                        />
+                    </div>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        fontSize: 8,
+                        height: "max-content",
+                        alignItems: "flex-end"
+                    }}>
+                        <h2>Enter end date</h2>
+                        <input
+                            aria-label="Date"
+                            type="date"
+                            onChange={handleEndDateChange}
+                            // value={endDate ?? new Date()}
+                        />
+                    </div>
                 </div>
             </ChartContainer>
         </div>

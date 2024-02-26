@@ -61,11 +61,7 @@ const GlobalMetricChart = ({ metricName, chainId }) => {
                         else if (a < b) return -1
                         else return 0
                     })
-                const labels = data.map((item, index) =>
-                    index === 0 || index === data.length - 1
-                        ? item.timestamp.toLocaleString()
-                        : item.timestamp.toLocaleTimeString()
-                )
+                const labels = data.map((item) => item.timestamp.toLocaleTimeString())
                 let chartData
                 chartData = data.map((item) => parseFloat(item.metricValue))
                 setChartData({

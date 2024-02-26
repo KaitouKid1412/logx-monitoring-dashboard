@@ -32,6 +32,22 @@ const symbolToTokenAddressMapping = {
         BTC: "0x2104E3BD1cC8551EeC0c7ad10dE13da29136B19C",
         ETH: "0x4200000000000000000000000000000000000001",
     },
+    // Telos mainnet
+    40: {
+        BTC: "0x7627b27594bc71e6Ab0fCE755aE8931EB1E12DAC",
+        ETH: "0xA0fB8cd450c8Fd3a11901876cD5f17eB47C6bc50",
+    },
+    // Manta Pacific mainnet
+    169: {
+        BTC: "0x305E88d809c9DC03179554BFbf85Ac05Ce8F18d6",
+        ETH: "0x0Dc808adcE2099A9F62AA87D9670745AbA741746",
+    },
+    // fuse mainnet
+    122: {
+        BTC: "0x33284f95ccb7B948d9D352e1439561CF83d8d00d",
+        ETH: "0x5622F6dC93e08a8b717B149677930C38d5d50682",
+        USDT: "0x68c9736781E9316ebf5c3d49FE0C1f45D2D104Cd",
+    },
 }
 
 const TokenMetricChart = ({ metricName, symbol, chainId, dates, setDates }) => {
@@ -89,10 +105,8 @@ const TokenMetricChart = ({ metricName, symbol, chainId, dates, setDates }) => {
                         else if (a < b) return -1
                         else return 0
                     })
-                const labels = data.map((item, index) =>
-                    index === 0 || index === data.length - 1
-                        ? item.timestamp.toLocaleString()
-                        : item.timestamp.toLocaleTimeString()
+                const labels = data.map((item) =>
+                    item.timestamp.toLocaleTimeString()
                 )
                 let chartData
                 if (metricName === "LongPnl" || metricName === "ShortPnl") {
