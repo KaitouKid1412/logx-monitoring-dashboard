@@ -52,6 +52,9 @@ function App() {
                 <option value="5000">Mantle</option>
                 <option value="59144">Linea</option>
                 <option value="255">Kroma</option>
+                <option value="169">Manta</option>
+                <option value="40">Telos</option>
+                <option value="122">Fuse</option>
             </StyledSelect>
             <StyledHeader>fee Metrics</StyledHeader>
             <ChartDiv>
@@ -82,13 +85,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongFundingRate"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortFundingRate"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -96,13 +99,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongFundingRate"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortFundingRate"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -110,13 +113,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongBorrowingRate"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortBorrowingRate"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -124,13 +127,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongBorrowingRate"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortBorrowingRate"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -138,13 +141,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongPnl"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortPnl"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -152,13 +155,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="LongPnl"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="ShortPnl"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -166,13 +169,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="TotalLongOiToOiThresholdRatio"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="TotalShortOiToOiThresholdRatio"
-                    tokenAddress={"ETH"}
+                    symbol={"ETH"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
@@ -180,13 +183,13 @@ function App() {
             <ChartDiv>
                 <TokenMetricChart
                     metricName="TotalLongOiToOiThresholdRatio"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
                 <TokenMetricChart
                     metricName="TotalShortOiToOiThresholdRatio"
-                    tokenAddress={"BTC"}
+                    symbol={"BTC"}
                     chainId={selectedChainId}
                     dates={dates}
                 />
